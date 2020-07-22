@@ -1,0 +1,122 @@
+<!doctype html>
+<html id="wrapper">
+
+<head>
+    {% load static %}
+    <title>Ninja Gold</title>
+    <style>
+        h1 {
+            font-size: 30px;
+            text-align: center;
+        }
+
+        p {
+            font-size: 25px;
+            text-align: center;
+        }
+
+        .b1{
+            min-width: 90px;
+            min-height: 30px;
+            margin-left: 110px;
+            margin-top: 60px;
+            background-color: yellow;
+            border-color: black;
+            cursor: pointer; 
+        }
+
+        button {
+            min-width: 90px;
+            min-height: 30px;
+            margin-left: 110px;
+            background-color: rgb(255, 157, 0);
+            border-color: black;
+            color: black;
+            cursor: pointer;
+        }
+
+        .boxes {
+            display: inline-block;
+            background-color: lightgray;
+            min-width: 300px;
+            min-height: 300px;
+            margin: 15px;
+        }
+
+        h3 {
+            font-size: 20px;
+        }
+
+        #wrapper {
+            background-color: lightcyan;
+            min-width: 1500px;
+        }
+
+        #bottom_box {
+            min-width: 1300px;
+            min-height: 400px;
+            margin-left: 15px;
+            display: inline-block;
+            background-color: lightgray;
+            padding-inline-start: 10px
+        }
+
+        text {
+            font-size: 15px;
+            display: inline-block;
+        }
+
+        #goldbar {
+            background-color: lightgray;
+        }
+    </style>
+</head>
+<div>
+    <form action="/restart" method="POST">
+        {% csrf_token %}
+        <button>Restart</button>
+    </form>
+    <h2>Your gold: {{request.session.gold}}</h2>
+</div>
+<div>
+    <div class="boxes">
+        <h1>Farm</h1>
+        <p>(earns 10-20 gold)</p>
+        <form action="/farmbutton" method="POST">
+            {% csrf_token %}
+            <button class="b1">Find Gold!</button>
+        </form>
+    </div>
+    <div class="boxes">
+        <h1>Cave</h1>
+        <p>(earns 5-10 gold)</p>
+        <form action="/cavebutton" method="POST">
+            {% csrf_token %}
+            <button class="b1">Find Gold!</button>
+        </form>
+    </div>
+    <div class="boxes">
+        <h1>House</h1>
+        <p>(earns 2-5 gold)</p>
+        <form action="/housebutton" method="POST">
+            {% csrf_token %}
+            <button class="b1">Find Gold</button>
+        </form>
+    </div>
+    <div class="boxes">
+        <h1>Casino</h1>
+        <p>(earns/takes 0-50 gold)</p>
+        <form action="/casinobutton" method="POST">
+            {% csrf_token %}
+            <button class="b1">Find Gold</button>
+        </form>
+    </div>
+</div>
+<div id="console">
+    <h3>Console:</h3>
+    <ul>
+        <li>you got {{request.session.temp}} {{request.session.console}}</li>
+    </ul>
+</div>
+
+</html>
